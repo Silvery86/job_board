@@ -19,13 +19,7 @@
             </style>
         @endif
     </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-        <h1 class="text-3xl font-bold underline">
-            Hello world!
-          </h1>
-
-        @if (Route::has('login'))
-            <div class="h-14.5 hidden lg:block"></div>
-        @endif
+    <body class="container mx-auto p-4">
+        {{ $slot }}
     </body>
 </html>
