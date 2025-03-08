@@ -3,18 +3,18 @@
         'Jobs' => route('jobs.index'),
     ]"></x-bread-crumbs>
 
-    <x-card class="mb-4 text-sm">
-        <form id="filter_form" action="{{ route('jobs.index') }}" method="GET">
+    <x-card class="mb-4 text-sm" x-data="">
+        <form x-ref="filters" id="filter_form" action="{{ route('jobs.index') }}" method="GET">
             <div class="mb-4 grid grid-cols-2 gap-4">
                 <div>
                     <div class="mb-1 font-semibold">Search</div>
-                    <x-text-input name="search" placeholder="Search" value="{{ request('search') }}" formId="filter_form"/>
+                    <x-text-input name="search" placeholder="Search" value="{{ request('search') }}" formRef="filters"/>
                 </div>
                 <div>
                     <div class="mb-1 font-semibold">Salary</div>
                     <div class="flex space-x-4">
-                        <x-text-input name="min_salary" placeholder="Min" value="{{ request('min_salary') }}" formId="filter_form"/>
-                        <x-text-input name="max_salary" placeholder="Max" value="{{ request('max_salary') }}" formId="filter_form"/>
+                        <x-text-input name="min_salary" placeholder="Min" value="{{ request('min_salary') }}" formRef="filters"/>
+                        <x-text-input name="max_salary" placeholder="Max" value="{{ request('max_salary') }}" formRef="filters"/>
                     </div>
                 </div>
                 <div>
