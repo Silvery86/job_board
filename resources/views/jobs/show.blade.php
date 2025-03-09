@@ -8,4 +8,21 @@
             {!! nl2br(e($job->description)) !!}
         </p>
     </x-job-card>
+    <x-card>
+        <h2>More other Jobs for {{ $job->employer->company_name }}</h2>
+        <div class="flex flex-col w-full ">
+            @foreach ($job->employer->jobs->except($job->id) as $otherJob)
+                <x-job-card :job='$otherJob'>
+                    <div class="text-sm text-slate-500 mb-4">
+                        {{ $otherJob->created_at->diffForHumans() }}
+                    </div>
+                    <div class="w-full flex">
+                        <x-link-button :href="route('jobs.show', $otherJob)" class="mr-2 w-full text-center">
+                            Show
+                        </x-link-button>
+                    </div>
+                </x-job-card>
+            @endforeach
+        </div>
+    </x-card>
 </x-layout>
