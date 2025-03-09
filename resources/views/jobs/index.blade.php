@@ -45,5 +45,7 @@
         </div>
     </x-card>
     @endempty
-    {{ $jobs->links() }}
+    <div class="mt-4">
+        {{ $jobs->appends(request()->query())->links() }}
+    </div>
 </x-layout>

@@ -10,12 +10,12 @@
         </div>
         <div class="flex space-x-1 text-xs">
             <x-tag>
-                <a href="{{ route('jobs.index', ['experience' => $job->experience]) }}">
+                <a href="{{ route('jobs.index', array_merge(request()->query(), ['experience' => $job->experience])) }}">
                     {{ Str::ucfirst($job->experience) }}
                 </a>
             </x-tag>
             <x-tag>
-                <a href="{{ route('jobs.index', ['category' => $job->category ]) }}">
+                <a href="{{ route('jobs.index', array_merge( request()->query(), ['category' => $job->category ])) }}">
                     {{ $job->category }}
                 </a>
 
