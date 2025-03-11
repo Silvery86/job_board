@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class JobApplicationController extends Controller
 {
-
+    use Authorizable;
     /**
      * Show the form for creating a new resource.
      */
     public function create(Job $job)
     {
+        Gate::authorize("apply", $job);
         return view("jobs.applications.create", ["job" => $job]);
     }
 
@@ -21,6 +24,7 @@ class JobApplicationController extends Controller
      */
     public function store(Job $job, Request $request)
     {
+        Gate::authorize("apply", $job);
         $job->jobApplications()->create([
             'user_id' => $request->user()->id,
             ...$request->validate([

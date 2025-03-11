@@ -7,7 +7,13 @@
         <p class="mb-4 text-sm text-slate-500">
             {!! nl2br(e($job->description)) !!}
         </p>
+        @can('apply', $job)
         <x-link-button :href="route('jobs.application.create', $job)">Apply</x-link-button>
+        @else
+        <div class="text-center my-8 rounded-md border-l-4 border-green-300 bg-green-100 p-4 text-green-400"> You already apply to this job</div>
+        @endcan
+
+
     </x-job-card>
     <x-card>
         <h2>More other Jobs for {{ $job->employer->company_name }}</h2>
