@@ -11,7 +11,7 @@
     </x-job-card>
 <x-card>
     <h2>Your Job Application</h2>
-    <form action="{{ route('jobs.application.store', $job) }}" method="POST">
+    <form action="{{ route('jobs.application.store', $job) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
             <label for="expected_salary" class="block text-sm text-slate-500">Esxpected Salary</label>
@@ -20,13 +20,13 @@
                 <p class="text-red-500 text-xs mt-1">{{ $expected_salary }}</p>
             @enderror
         </div>
-        {{-- <div class="mb-4">
+        <div class="mb-4">
             <label for="cv" class="block text-sm text-slate-500">CV</label>
-            <input type="file" name="cv" id="cv" class="form-input mt-1 block w-full" required>
+            <x-text-input type="file" name="cv" id="cv" class="form-input mt-1 block w-full" required></x-text-input>
             @error('cv')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
-        </div> --}}
+        </div>
         <div class="mb-4">
             <x-button type="submit" class="w-full">Apply</x-button>
         </div>
