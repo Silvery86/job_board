@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\JobApplication;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -38,8 +39,8 @@ class JobApplicationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(JobApplication $jobApplication)
     {
-        //
+        return null;
     }
 }
