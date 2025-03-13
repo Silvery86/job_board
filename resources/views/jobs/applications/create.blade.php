@@ -16,16 +16,10 @@
         <div class="mb-4">
             <label for="expected_salary" class="block text-sm text-slate-500">Esxpected Salary</label>
             <x-text-input name="expected_salary" id="expected_salary" type="number" required></x-text-input>
-            @error('expected_salary')
-                <p class="text-red-500 text-xs mt-1">{{ $expected_salary }}</p>
-            @enderror
         </div>
         <div class="mb-4">
             <label for="cv" class="block text-sm text-slate-500">CV</label>
             <x-text-input type="file" name="cv" id="cv" class="form-input mt-1 block w-full" required></x-text-input>
-            @error('cv')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
         </div>
         <div class="mb-4">
             <x-button type="submit" class="w-full">Apply</x-button>
