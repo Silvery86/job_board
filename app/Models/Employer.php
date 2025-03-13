@@ -11,6 +11,9 @@ class Employer extends Model
 {
     /** @use HasFactory<\Database\Factories\EmployerFactory> */
     use HasFactory;
+    protected $fillable = [
+        'company_name'
+    ];
 
     public function jobs(): HasMany
     {
