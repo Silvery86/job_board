@@ -20,6 +20,9 @@
       <div class="hidden lg:flex lg:flex-1 lg:justify-end space-x-3">
         @if(auth()->check())
         <div>
+            <a href="{{ route('my-jobs.index') }}" class="text-sm/6 font-semibold text-gray-900">My Jobs</a>
+        </div>
+        <div>
             <a href="{{ route('my-job-applications.index') }}" class="text-sm/6 font-semibold text-gray-900">My Applications</a>
         </div>
         <form method="POST" action="{{ route('auth.destroy') }}">
@@ -61,6 +64,9 @@
             </div>
             <div class="py-6">
                 @if(auth()->check())
+                <div>
+                    <a href="{{ route('my-jobs.index') }}" class="text-sm/6 font-semibold text-gray-900">My Jobs</a>
+                </div>
                 <div>
                     <a href="{{ route('my-job-applications.index')  }}" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">My Applications</a>
                 </div>
