@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class MyJobController extends Controller
@@ -27,7 +28,15 @@ class MyJobController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'salary' => 'required|min:5000|numeric',
+            'description' => 'required|string',
+            'experience' => 'required|in:' . implode(',', Job::$experience),
+            'category' => 'required|in:' . implode(',', Job::$category),
+        ]);
+        $request->user()->employer->jobs()->create($validatedData);
     }
 
     /**

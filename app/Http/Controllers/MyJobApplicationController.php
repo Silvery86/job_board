@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class MyJobApplicationController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         return view("my_job_applications.index", [
-            'applications' => Auth::user()->jobApplications()->with([
+            'applications' => $request->user()->jobApplications()->with([
                 'job' => fn($query) => $query->withCount('jobApplications')
                 ->withAvg('jobApplications', 'expected_salary'),
                 'job.employer'

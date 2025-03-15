@@ -14,8 +14,9 @@ class EmployerController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Employer $employer)
     {
+        Gate::authorize('create', $employer);
         return view('employer.create');
     }
 
@@ -24,7 +25,7 @@ class EmployerController extends Controller
      */
     public function store(Request $request)
     {
-        Auth::user()->employer()->create(
+        $request->user()->employer()->create(
             $request->validate([
                 'company_name' => 'required|min:3|unique:employers,company_name'
             ])
