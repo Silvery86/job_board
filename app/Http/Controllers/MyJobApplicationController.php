@@ -12,9 +12,8 @@ class MyJobApplicationController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
         return view("my_job_applications.index", [
-            'applications' => $user->jobApplications()->with([
+            'applications' => Auth::user()->jobApplications()->with([
                 'job' => fn($query) => $query->withCount('jobApplications')
                 ->withAvg('jobApplications', 'expected_salary'),
                 'job.employer'
