@@ -1,4 +1,5 @@
 <div>
+    @if($allOption)
     <label for="{{ $name }}" class="flex mb-1 text-sm">
         <input type="radio" name="{{ $name }}" value=""
         @checked(!request( $name ))
@@ -7,13 +8,14 @@
             All
         </span>
     </label>
-    @foreach( $options as $option )
+    @endif
+    @foreach( $optionsWithLabels as $label => $option )
     <label for="{{ $name }}" class="flex mb-1 text-sm">
         <input type="radio" name="{{ $name }}" value="{{ $option }}"
-        @checked($option == request($name))
+        @checked($option == ($value ?? request($name)))
         />
         <span class="ml-2">
-            {{ Str::ucfirst($option) }}
+            {{ $label }}
         </span>
     </label>
     @endforeach
