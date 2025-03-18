@@ -14,6 +14,7 @@ class MyJobController extends Controller
      */
     public function index(Request $request)
     {
+        Gate::authorize('viewAnyEmployer', Job::class);
         return view(
             "my_jobs.index",
             [
@@ -30,6 +31,7 @@ class MyJobController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create',Job::class);
         return view('my_jobs.create');
     }
 
@@ -38,17 +40,10 @@ class MyJobController extends Controller
      */
     public function store(JobRequest $request)
     {
+        Gate::authorize('create',Job::class);
         $request->user()->employer->jobs()->create($request->validated());
 
         return redirect()->route('my-jobs.index')->with('success', 'Job create successfully!');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -56,6 +51,7 @@ class MyJobController extends Controller
      */
     public function edit(Job $myJob)
     {
+        Gate::authorize('update',$myJob);
         return view('my_jobs.edit', ['job' => $myJob]);
     }
 
@@ -64,6 +60,7 @@ class MyJobController extends Controller
      */
     public function update(JobRequest $request, Job $myJob)
     {
+        Gate::authorize('update',$myJob);
         $myJob->update($request->validated());
 
         return redirect()->route('my-jobs.index')
@@ -73,8 +70,11 @@ class MyJobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Job $myJob)
     {
-        //
+        $myJob->delete();
+
+        return redirect()->route('my-jobs.index')
+        ->with('success','Job deleted successfully');
     }
 }
